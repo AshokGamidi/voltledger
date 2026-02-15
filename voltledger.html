@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VoltLedger - Smart Energy Manager</title>
+    <link rel="stylesheet" href="voltledger.css">
+</head>
+<body>
+
+<div class="navbar">
+    <div class="logo-area">
+        <img src="logo.png" class="logo">
+        <h2>VoltLedger</h2>
+    </div>
+    <button id="logoutBtn" onclick="logout()" style="display:none;">Logout</button>
+</div>
+
+<div class="auth-wrapper">
+
+    <!-- REGISTER -->
+    <div id="registerSection" class="card auth-card">
+        <h3>Create Account</h3>
+        <input type="email" id="regEmail" placeholder="Enter Email">
+        <input type="password" id="regPassword" placeholder="Enter Password">
+        <button class="primary-btn" onclick="register()">Register</button>
+        <p>Already have account?
+            <span onclick="showLogin()" class="link">Login</span>
+        </p>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="loginSection" class="card auth-card" style="display:none;">
+        <h3>Welcome Back</h3>
+        <input type="email" id="loginEmail" placeholder="Enter Email">
+        <input type="password" id="loginPassword" placeholder="Enter Password">
+
+        <p id="captchaQuestion"></p>
+        <input type="number" id="captchaAnswer" placeholder="Enter Captcha Answer">
+
+        <button class="primary-btn" onclick="login()">Login</button>
+    </div>
+
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboardSection" style="display:none;">
+
+    <div class="card">
+        <h3>⚡ Electricity Bill Calculator</h3>
+        <input type="number" id="units" placeholder="Enter Units (kWh)">
+        <button class="primary-btn" onclick="calculateBill()">Calculate</button>
+
+        <div class="bill-box">
+            <p>Energy Charges: ₹<span id="energyCharge">0</span></p>
+            <p>Fixed Charge: ₹50</p>
+            <p>GST (18%): ₹<span id="gst">0</span></p>
+            <h3>Total Bill: ₹<span id="totalBill">0</span></h3>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>📜 Transaction History</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Units</th>
+                    <th>Total (₹)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="historyTable"></tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h3>📊 Bill Analytics</h3>
+        <canvas id="billChart"></canvas>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="voltledger.js"></script>
+
+</body>
+</html>
